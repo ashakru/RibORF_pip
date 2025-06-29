@@ -1,3 +1,4 @@
+#!/usr/bin/env perl
 if ($#ARGV < 2) {
 	print "## remove adapter sequence"."\n";
 	print "usage: perl removeAdaptor.pl -f fastqFile -a adapterSequence -o outputFile [-l readLengthCutoff]"."\n";
@@ -11,7 +12,7 @@ if ($#ARGV < 2) {
 use Getopt::Std;
 
 ### get arguments ###
-my %args; 
+my %args;
 getopt("faol",\%args);
 my $file=$args{f};
 if (! $file) {
@@ -58,7 +59,7 @@ while (<IN>) {
 		if (length($m) >= $cutoff) {
 			print OUT $out.substr($_, 0, length($m))."\n";
 		}
-	} 
+	}
 }
 close IN;
 close OUT;

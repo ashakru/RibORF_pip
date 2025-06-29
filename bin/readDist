@@ -1,3 +1,4 @@
+#!/usr/bin/env perl
 if ($#ARGV < 2) {
 	print "## Calcualte read distribution around CDS start and stop codons"."\n";
 	print "usage: perl readDist.pl -f readFile -g geneFile -o outputDir [-d readLength] [-l leftNum] [-r rightNum]"."\n";
@@ -13,7 +14,7 @@ if ($#ARGV < 2) {
 use Getopt::Std;
 
 ### get arguments ###
-my %args; 
+my %args;
 getopt("fgodlr",\%args);
 
 my $readfile=$args{f};
@@ -100,7 +101,7 @@ while (<AN>) {
 				push @ex, $read{$j};
 			} else {
 				push @ex, "0";
-			} 
+			}
 			if ($s1[2] eq '+') {
 				if ($j==$s1[5]) {
 					$codon5=$k;
@@ -113,7 +114,7 @@ while (<AN>) {
 				} elsif ($j==($s1[6]-1)) {
 					$codon3=$k;
 				}
-			} 
+			}
 		}
 	}
 	#if (($codon3-$codon5) > $end) {
@@ -130,7 +131,7 @@ while (<AN>) {
 			if (exists ($read{$k})) {
 				$count5{$i+$start+1}+=$read{$k};
 			}
-		} 
+		}
 		for (my $i=-$end; $i<=$start; $i++) {
 			my $k;
 			if ($s1[2] eq '+') {
@@ -141,7 +142,7 @@ while (<AN>) {
 			if (exists ($read{$k})) {
 				$count3{$i+$end+1}+=$read{$k};
 			}
-		} 
+		}
 	}
 }
 close AN;

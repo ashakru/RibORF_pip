@@ -1,3 +1,4 @@
+#!/usr/bin/env perl
 if ($#ARGV < 2) {
 	print "##ribORF predication"."\n";
 	print "usage: perl ribORF.pl -f readCorrectedFile -c candidateORFFile -o outputDir [-l orfLengthCutoff] [-r orfReadCutoff] [-p predictPvalueCutoff]"."\n";
@@ -14,7 +15,7 @@ if ($#ARGV < 2) {
 use Getopt::Std;
 
 ### get arguments ###
-my %args; 
+my %args;
 getopt("fcolrp",\%args);
 my $readfile=$args{f};
 if (! $readfile) {
@@ -95,7 +96,7 @@ while (<AN>) {
 		for (my $j=$s2[$i]; $j<$s3[$i]; $j++) {
 			if ($j >=$s1[5] && $j < $s1[6]) {
 				push @post, $j;
-			}	
+			}
 		}
 	}
 	if ($s1[2] eq '-') {
@@ -106,7 +107,7 @@ while (<AN>) {
 	#splice @post, -3;
 	for (my $m=0; $m<=$#post; $m++) {
 		$len1++;
-		my $k=$s1[1].":".$s1[2].":".$post[$m]; 
+		my $k=$s1[1].":".$s1[2].":".$post[$m];
 		if (exists ($read{$k})) {
 			$tot+=$read{$k};
 			$val[int(($len1-1)/$dist)]+=$read{$k};
@@ -267,14 +268,14 @@ foreach my $k (sort keys %cluster) {
 			$a1.=$s1[$i]."|";
 		} else {
 			$a2.=$s1[$i]."|";
-		} 
+		}
 	}
 	my $a;
 	if ($a1 =~ /\|/) {
 		$a=$a1;
 	} else {
 		$a=$a2;
-	} 
+	}
 	my @s2=split /\|/, $a;
 	my $b=0;
 	my $d;
@@ -292,7 +293,7 @@ foreach my $k (sort keys %cluster) {
 			$d=$s3[0].":".$s3[1];
 		}
 	}
-	$sel{$k.":".$d}=1;	
+	$sel{$k.":".$d}=1;
 }
 
 open (AN, "$outputDir/pred.pvalue.parameters.txt");

@@ -1,3 +1,4 @@
+#!/usr/bin/env perl
 if ($#ARGV < 2) {
 	print "##Annotate potential ORF"."\n";
 	print "usage: perl ORFcandidate.pl -g genomeSequenceFile -t transcriptomeFile -o outputDir [-s startCodon] [-l orfLengthCutoff]"."\n";
@@ -12,24 +13,24 @@ if ($#ARGV < 2) {
 use Getopt::Std;
 
 ### get arguments ###
-my %args; 
+my %args;
 getopt("gtosl",\%args);
-my $genome=$args{g}; 
+my $genome=$args{g};
 if (! $genome) {
 	print "No reference genome file"."\n";
     exit;
 }
-my $genepred=$args{t}; 
+my $genepred=$args{t};
 if (! $genepred) {
 	print "No reference transcriptome annotation file"."\n";
     exit;
 }
-my $outdir=$args{o}; 
+my $outdir=$args{o};
 if (! $outdir) {
 	print "No output directory"."\n";
     exit;
 }
-my $scodon=$args{s}; 
+my $scodon=$args{s};
 my $lenoff=$args{l};
 
 ($scodon="ATG/CTG/GTG/TTG/ACG") if (!$scodon);
@@ -98,12 +99,12 @@ while (<IN>) {
 		$loc1=0;
 		$loc2=0;
 	}
-	
+
 	my $ra=0;
 	for (my $i=0; $i<=($len-2); $i++) {
 		my $b=substr ($out, $i, 3);
 		if (exists ($sc{$b})) {
-			my $ind=0; 
+			my $ind=0;
 			for (my $j=($i+3); $j<=$len && $ind==0; $j+=3) {
 				$d=substr ($out, $j, 3);
 				if ($d eq 'TAG' || $d eq 'TAA' || $d eq 'TGA') {
@@ -145,11 +146,11 @@ while (<IN>) {
 						$out2.="\t".$val[$i]."\t".($val[$j+2]+1);
 					} else {
 						$out2.="\t".$val[$j+2]."\t".($val[$i]+1);
-					} 
+					}
 					$out2.="\t".$s1[7]."\t".$s1[8]."\t".$s1[9];
 					print OUT1 $out2."\n";
 					}
-					$ind=1;					
+					$ind=1;
 				}
 			}
 		}
