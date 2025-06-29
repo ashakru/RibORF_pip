@@ -9,7 +9,7 @@ setup(
     url='https://github.com/zhejilab/RibORF/tree/master/RibORF.2.0',
     license='GNU GPL v3',
     # tells setuptools to install any scripts under bin/
-    scripts=['bin/mergeORF', 'bin/offsetCorrect', 'bin/ORFannotate', 'bin/parameterOffset', 'bin/readDist', 'bin/removeAdapter', 'bin/ribORF'],
+    scripts=['bin/mergeORF','bin/offsetCorrect','bin/ORFannotate','bin/parameterOffset','bin/readDist', 'bin/removeAdapter', 'bin/ribORF' ],
     # no Python dependencies:
     install_requires=[],
     classifiers=[
